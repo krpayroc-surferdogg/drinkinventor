@@ -63,17 +63,17 @@ function rng(seed=1957){ let t=seed>>>0; return ()=> (t=(t+0x6D2B79F5)|0, ((t^(t
 function titleize(words){ return words.map(w=>w[0].toUpperCase()+w.slice(1)).join(" "); }
 function splitLines(text){ if(!text) return []; return text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean); }
 
-// ✅ Fixed toCSV
 function toCSV(rows) {
   if (!rows.length) return "";
   const headers = Object.keys(rows[0]);
   const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
   const lines = [
-    headers.join(","), // header row
+    headers.join(","),                                  // header row
     ...rows.map((r) => headers.map((h) => esc(r[h])).join(",")), // data rows
   ];
-  return lines.join("\n");
+  return lines.join("\n"); // use "\r\n" if you prefer Windows line endings
 }
+
 
 const OPENERS = ["Server tip:","Guest-friendly pitch:","Quick sell:","Recommendation:"];
 const MOUTHEELS = { Citrusy:["bright","zesty","fresh-squeezed"], Fruity:["juicy","ripe","tropical"], Herbal:["herbal","garden-fresh","botanical"], Spicy:["peppery","spiced","lively"], Smoky:["smoky","embers","campfire-kissed"], Bitter:["bitter-sweet","aperitivo-style","grown-up"], Sweet:["softly sweet","rounded","dessert-leaning"], Sour:["tart","snappy","mouthwatering"], Floral:["floral","perfumed","blooming"], Creamy:["silky","creamy","lush"] };
