@@ -63,16 +63,16 @@ function rng(seed=1957){ let t=seed>>>0; return ()=> (t=(t+0x6D2B79F5)|0, ((t^(t
 function titleize(words){ return words.map(w=>w[0].toUpperCase()+w.slice(1)).join(" "); }
 function splitLines(text){ if(!text) return []; return text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean); }
 
-// ✅ Safe CSV builder
+// ✅ Safe CSV builder (no backslash soup, no malformed join)
 function toCSV(rows){
   if (!rows.length) return "";
   const headers = Object.keys(rows[0]);
   const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
   const lines = [
-    headers.join(","),                                  // header row
+    headers.join(","),                                   // header row
     ...rows.map(r => headers.map(h => esc(r[h])).join(",")), // data rows
   ];
-  return lines.join("\n"); // use "\r\n" for Windows line endings if desired
+  return lines.join("\n"); // use "\r\n" for Windows consumers if desired
 }
 
 const OPENERS = ["Server tip:","Guest-friendly pitch:","Quick sell:","Recommendation:"];
@@ -224,7 +224,7 @@ export default function App(){
           {!!tips.length && (
             <section>
               <h2 className="text-xl font-semibold mb-3">Elevation Tips</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2 lg/grid-cols-3 gap-4">
                 {tips.map((t,idx)=>(
                   <motion.article whileHover={{y:-3}} key={idx} className="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4 border border-white/60">
                     <h3 className="font-bold">{t.name}</h3>
