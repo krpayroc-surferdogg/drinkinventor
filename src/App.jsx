@@ -23,6 +23,7 @@ function toCSV(rows) {
   ];
   return lines.join("\n");
 }
+
 function downloadCSV(filename, rows) {
   const csv = toCSV(rows);
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -41,6 +42,7 @@ const METHODS = ["shaken", "stirred", "built", "blended"];
 const GLASSWARE = ["coupe", "rocks", "collins", "martini", "highball"];
 const BUBBLES = ["none", "soda", "tonic", "ginger beer", "prosecco"];
 const OPENERS = ["Server tip:","Guest-friendly pitch:","Quick sell:","Recommendation:"];
+
 
 /* --------------------------- Name Generators -------------------------- */
 const ADJ = ["Velvet","Golden","Smoky","Bright","Midnight","Electric","Blushing","Honeyed","Citrus","Silk"];
