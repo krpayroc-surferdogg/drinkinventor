@@ -204,7 +204,7 @@ const CSS = `
 body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";background:radial-gradient(1200px 800px at 10% -10%,#0f172a 0%,var(--bg) 55%);color:var(--text)}
 .app{max-width:1100px;margin:0 auto;padding:24px}
 .header{text-align:center;margin-bottom:18px}
-.header h1{margin:0;font-size:28px;letter-spacing:.3px}
+.header h1{margin:0;font-size:clamp(44px, 6vw, 80px);letter-spacing:.3px;line-height:1.1}
 .sub{color:var(--muted);margin-top:6px}
 .grid{display:grid;gap:16px;grid-template-columns:380px 1fr}
 @media (max-width:980px){.grid{grid-template-columns:1fr}}
